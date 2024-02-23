@@ -8,10 +8,12 @@ public class MiniMax implements MoveStrategy {
 
     EvaluateBoard evaluateBoard;
     int currDepth;
+    int alpha;
+    int beta;
 
     public MiniMax(int currDepth) {
         this.evaluateBoard = new ChessBoardEvaluator();
-        this.currDepth  = currDepth;
+        this.currDepth = currDepth;
     }
 
     @Override
@@ -25,10 +27,14 @@ public class MiniMax implements MoveStrategy {
         Move bestMove = null;
 
         int smallestValue = Integer.MAX_VALUE;
+        this.beta = Integer.MAX_VALUE;
+
         int largestValue = Integer.MIN_VALUE;
+        this.alpha = Integer.MIN_VALUE;
+
         int currValue;
 
-        System.out.println(board.currPlayer() + "Processing! Depth: " + this.currDepth);
+        System.out.println(board.currPlayer().getColour() + " Move Processing! Depth: " + this.currDepth);
 
         for (Move move : board.currPlayer().legalMoves()) {
 
@@ -37,10 +43,10 @@ public class MiniMax implements MoveStrategy {
             if (afterMove.getMoveStatus().isCompleted()) {
 
                 if (board.currPlayer().getColour().isWhite()) {
-                    currValue = min(afterMove.getAfterBoard(), this.currDepth - 1);
+                    currValue = min(afterMove.getAfterBoard(), this.currDepth - 1, this.alpha, this.beta);
                 }
                 else {
-                    currValue = max(afterMove.getAfterBoard(), this.currDepth - 1);
+                    currValue = max(afterMove.getAfterBoard(), this.currDepth - 1, this.alpha, this.beta);
                 }
 
                 if (board.currPlayer().getColour().isWhite() && currValue >= largestValue) {
@@ -57,7 +63,7 @@ public class MiniMax implements MoveStrategy {
         return bestMove;
     }
 
-    public int min(Board board, int depth) {
+    public int min(Board board, int depth, int alpha, int beta) {
 
         if (depth == 0 || gameEnded(board)) {
             return this.evaluateBoard.evaluate(board, depth);
@@ -66,21 +72,29 @@ public class MiniMax implements MoveStrategy {
         int smallestValue = Integer.MAX_VALUE;
 
         for (Move move : board.currPlayer().legalMoves()) {
+
             AfterMove afterMove = board.currPlayer().makeMove(move);
 
             if (afterMove.getMoveStatus().isCompleted()) {
-                int currValue = max(afterMove.getAfterBoard(), depth - 1);
+
+                int currValue = max(afterMove.getAfterBoard(), depth - 1, alpha, beta);
 
                 if (currValue <= smallestValue) {
                     smallestValue = currValue;
                 }
+
+                if (currValue <= alpha) {
+                    return smallestValue;
+                }
+
+                beta = Math.min(beta, currValue);
             }
         }
 
         return smallestValue;
     }
 
-    public int max(Board board, int depth) {
+    public int max(Board board, int depth, int alpha, int beta) {
 
         if (depth == 0 || gameEnded(board)) {
             return this.evaluateBoard.evaluate(board, depth);
@@ -92,11 +106,17 @@ public class MiniMax implements MoveStrategy {
             AfterMove afterMove = board.currPlayer().makeMove(move);
 
             if (afterMove.getMoveStatus().isCompleted()) {
-                int currValue = min(afterMove.getAfterBoard(), depth - 1);
+                int currValue = min(afterMove.getAfterBoard(), depth - 1, alpha, beta);
 
                 if (currValue >= largestValue) {
                     largestValue = currValue;
                 }
+
+                if (currValue >= beta) {
+                    return largestValue;
+                }
+
+                alpha = Math.max(alpha, currValue);
             }
         }
 
@@ -106,6 +126,4 @@ public class MiniMax implements MoveStrategy {
     public static boolean gameEnded(Board board) {
         return board.currPlayer().isCheckMate() || board.currPlayer().isStaleMate();
     }
-
-
 }
