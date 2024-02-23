@@ -1,7 +1,7 @@
-# AI Chess Engine Using MinMax
-A customizable chess game which allows you to play human vs human, computer vs human and computer vs computer. Chess being a zero-sum game, the computer AI is implemented through the MinMax algorithm.
+# AI Chess Engine Using MiniMax
+A customizable chess game which allows you to play human vs human, computer vs human and computer vs computer. Chess being a zero-sum game, the computer AI is implemented through the MiniMax algorithm.
 
-I have implemented my own categories for calculating the value at each stage. Thus, the MinMax algorithm will look at 
+I have implemented my own categories for calculating the value at each stage. Thus, the MiniMax algorithm will look at 
 future moves (4 moves if depth is 4) and will judge the future moves based on the categories thereby selecting the optimal
 move. Despite the large number of possible moves during each chess position, the AI engine has been implemented in such 
 a way that it analyzes the position and plays the optimal move in almost no time.
@@ -14,7 +14,7 @@ a way that it analyzes the position and plays the optimal move in almost no time
 * Customizable board colours and legal move indicating dots
 * Ability to flip the chess board
 * Interactive GUI which shows the captured pieces and the moves in chess notation
-* Customizable chess engine by altering MinMax properties
+* Customizable chess engine by altering MiniMax properties
 * Readable and simple implementation using OOPs
 * All chess moves implemented including en passant, pawn promotion, stalemate and castling
 
@@ -23,7 +23,7 @@ a way that it analyzes the position and plays the optimal move in almost no time
 <img width="330" alt="Screenshot 2024-02-22 at 11 47 09 PM" src="https://github.com/Jai0212/AI-Chess-Engine/assets/86296165/de4f4a7a-747b-47c7-9c2c-2c810ce1be8f">
 
 ## Technical Aspects, Usage and Acknowledgement
-* Moves are calculated using the MinMax algorithm with a customizable depth to check for the best move possible
+* Moves are calculated using the MiniMax algorithm with a customizable depth to check for the best move possible
 * Code written in Java on IntelliJ
 * The GUI was implemented through JFrame in the package javax.swing (preinstalled)
 
