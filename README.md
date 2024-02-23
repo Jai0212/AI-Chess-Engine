@@ -1,5 +1,5 @@
 # AI Chess Engine Using MiniMax and Alpha-Beta Pruning
-A customizable chess game that allows you to play human vs human, computer vs human and computer vs computer. Chess being a zero-sum game, the computer AI is implemented through the MiniMax algorithm and is enhanced using Alpha-Beta pruning.
+A customizable chess game/engine that allows you to play human vs human, computer vs human and computer vs computer. Chess being a zero-sum game, the computer AI is implemented through the MiniMax algorithm and is enhanced using Alpha-Beta pruning.
 
 I have implemented my own categories for calculating the value at each stage. Thus, the MiniMax algorithm will look at 
 future moves (4 moves if depth is 4) and will judge the future moves based on the categories thereby selecting the optimal
