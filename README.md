@@ -1,10 +1,10 @@
-# AI Chess Engine Using MiniMax
-A customizable chess game which allows you to play human vs human, computer vs human and computer vs computer. Chess being a zero-sum game, the computer AI is implemented through the MiniMax algorithm.
+# AI Chess Engine Using MiniMax and Alpha-Beta Pruning
+A customizable chess game that allows you to play human vs human, computer vs human and computer vs computer. Chess being a zero-sum game, the computer AI is implemented through the MiniMax algorithm and is enhanced using Alpha-Beta pruning.
 
 I have implemented my own categories for calculating the value at each stage. Thus, the MiniMax algorithm will look at 
 future moves (4 moves if depth is 4) and will judge the future moves based on the categories thereby selecting the optimal
 move. Despite the large number of possible moves during each chess position, the AI engine has been implemented in such 
-a way that it analyzes the position and plays the optimal move in almost no time.
+a way using Alpha-Beta pruning that it analyzes the position and plays the optimal move in almost no time.
 
 <img width="500" alt="Screenshot 2024-02-22 at 11 49 18 PM" src="https://github.com/Jai0212/AI-Chess-Engine/assets/86296165/816b77cb-29f5-4a74-b951-650edec91a9e">
 <img width="500" alt="Screenshot 2024-02-22 at 11 41 35 PM" src="https://github.com/Jai0212/AI-Chess-Engine/assets/86296165/dc72623f-3679-4939-bce9-151f3c883056">
@@ -24,10 +24,11 @@ a way that it analyzes the position and plays the optimal move in almost no time
 
 ## Technical Aspects, Usage and Acknowledgement
 * Moves are calculated using the MiniMax algorithm with a customizable depth to check for the best move possible
+* Alpha-Beta pruning is implemented for efficiency and engine optimization
 * Code written in Java on IntelliJ
 * The GUI was implemented through JFrame in the package javax.swing (preinstalled)
 
-To use, just download the code and run the 'Chess' class. No need to install anything else. Can be run on any normal 
+To use, just download the code and run the 'Chess' class. There is no need to install anything else. It can be run on any normal 
 device that supports java for human vs human and upto depth 4 for the AI. Beyond that it will use more time 
 and resources.  
 
